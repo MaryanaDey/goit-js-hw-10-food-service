@@ -10,8 +10,8 @@ const Theme = {
 
 const checkTheme = localStorage.getItem('Theme');
 
-
-checkboxPosition();
+currentCheckTheme();
+checkboxCurrent();
 
 refs.checkbox.addEventListener('change', onClickCheck);
 
@@ -24,21 +24,30 @@ function onClickCheck(evt) {
   } else {
     localStorage.setItem('Theme', Theme.LIGHT);
     refs.body.classList.remove(Theme.DARK);
-    
     refs.body.classList.add(Theme.LIGHT);
+    
+  }
+  
+}
+
+function currentCheckTheme() {
+
+  if (!checkTheme) {
+    localStorage.setItem('Theme', Theme.LIGHT);
+    refs.body.classList.add(Theme.LIGHT);
+  } else {
+    refs.body.classList.add(checkTheme);
   }
 }
 
-function checkboxPosition() {
+
+
+function checkboxCurrent() {
 
   if (checkTheme === Theme.DARK) {
     refs.checkbox.checked = true;
   }
 }
-
-
-
-
 
 
 
